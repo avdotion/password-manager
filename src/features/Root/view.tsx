@@ -17,7 +17,7 @@ const easelStyles = style9.create({
         backgroundColor: '#F4F4F4',
         position: 'relative',
         overflowY: 'hidden',
-        '@media (max-width: 400px)': {
+        '@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3)': {
             minHeight: 'auto',
         },
     },
