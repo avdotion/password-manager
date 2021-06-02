@@ -1,6 +1,8 @@
-import {ReactNode} from 'react';
+import {createStore} from '@reatom/core';
+import {reatomContext} from '@reatom/react';
 import style9 from 'style9';
 
+import {context, Context} from '../../context';
 import {overrideFrame} from '../../ui/layout/Frame';
 import {ResetStyles} from '../StylesReset';
 import {ThemeProvider} from '../Theming';
@@ -18,19 +20,22 @@ const easelStyles = style9.create({
 const Easel = overrideFrame({styles: [easelStyles.defaults], def: 'easel'});
 
 type Props = {
-    provideHeader?: boolean,
-    provideFooter?: boolean,
-    children: ReactNode,
+    Content: () => JSX.Element,
 };
 
 export function Root({
-    children: content,
+    Content,
 }: Props): JSX.Element {
+    const store = createStore();
+    store.init(context);
+
     return (
         <ResetStyles>
             <ThemeProvider theme="light">
                 <Easel>
-                    {content}
+                    <reatomContext.Provider value={store}>
+                        <Content />
+                    </reatomContext.Provider>
                 </Easel>
             </ThemeProvider>
         </ResetStyles>

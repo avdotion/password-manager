@@ -1,19 +1,19 @@
-import {createStore} from '@reatom/core';
+import {useAtom} from '@reatom/react';
 import style9 from 'style9';
-import {reatomContext} from '@reatom/react';
+import {context} from '../../context';
 
 import {CopySaltedPasswordButton} from '../../features/CopySaltedPassword';
 import {DynamicBackground} from '../../features/DynamicBackground';
 import {EmojiPrompt} from '../../features/EmojiPrompt';
 import {GeneratedPassword} from '../../features/GeneratedPassword';
 import {PasswordSalting} from '../../features/PasswordSalting';
-import {SaltedPasswordLength} from '../../features/SaltedPasswordLength/view';
+import {SaltedPasswordLength} from '../../features/SaltedPasswordLength';
 import {SelectHashFunction} from '../../features/SelectHashFunction';
 import {SessionTerminator} from '../../features/SessionTerminator';
 import {Frame, overrideFrame} from '../../ui/layout/Frame';
 import {VerticalSpacing} from '../../ui/layout/Spacing';
+import {Link} from '../../ui/Link';
 import {Text} from '../../ui/Text';
-import {Root} from '../../features/Root';
 
 const indexPageStyles = style9.create({
     baseLayout: {
@@ -31,31 +31,32 @@ const BaseLayout = overrideFrame({styles: [indexPageStyles.baseLayout], as: 'mai
 
 
 export function IndexPage(): JSX.Element {
-    const store = createStore();
+    const [{repoLink, title}] = useAtom(context);
 
     return (
-        <Root>
-            <reatomContext.Provider value={store}>
-                <DynamicBackground />
-                <BaseLayout>
-                    <Text size="xl" weight="semiBold">Password Manager</Text>
-                    <VerticalSpacing size={10} />
-                    <PasswordSalting />
-                    <VerticalSpacing size={6} />
-                    <EmojiPrompt />
-                    <VerticalSpacing size={6} />
-                    <Frame direction="row" gap={6}>
-                        <SelectHashFunction />
-                        <SaltedPasswordLength />
-                    </Frame>
-                    <VerticalSpacing size={6} />
-                    <CopySaltedPasswordButton />
-                    <VerticalSpacing size={2} />
-                    <GeneratedPassword />
-                    <VerticalSpacing size={4} />
-                    <SessionTerminator />
-                </BaseLayout>
-            </reatomContext.Provider>
-        </Root>
+        <>
+            <DynamicBackground />
+            <BaseLayout>
+                <Text size="xl" weight="semiBold">{title}</Text>
+                <Text>...is secure and convenient!</Text>
+                <VerticalSpacing size={1} />
+                <Link href={repoLink}>Source code: How it works and what to do if an app become unavailable?</Link>
+                <VerticalSpacing size={10} />
+                <PasswordSalting />
+                <VerticalSpacing size={6} />
+                <EmojiPrompt />
+                <VerticalSpacing size={6} />
+                <Frame direction="row" gap={6}>
+                    <SelectHashFunction />
+                    <SaltedPasswordLength />
+                </Frame>
+                <VerticalSpacing size={6} />
+                <CopySaltedPasswordButton />
+                <VerticalSpacing size={2} />
+                <GeneratedPassword />
+                <VerticalSpacing size={4} />
+                <SessionTerminator />
+            </BaseLayout>
+        </>
     );
 }

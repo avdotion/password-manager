@@ -1,4 +1,7 @@
-import CryptoES from 'crypto-es';
+import {WordArray} from 'crypto-es/lib/core';
+import {MD5} from 'crypto-es/lib/md5';
+import {SHA3} from 'crypto-es/lib/sha3';
+import {Base64} from 'crypto-es/lib/enc-base64';
 
 export const stringToNumber = (value: string): number => {
     let result = 0;
@@ -8,9 +11,9 @@ export const stringToNumber = (value: string): number => {
     return result;
 };
 
-export const md5 = (value: string): CryptoES.lib.WordArray => CryptoES.MD5(value);
-export const sha3 = (value: string): CryptoES.lib.WordArray => CryptoES.SHA3(value);
-export const base64 = (value: CryptoES.lib.WordArray): string => value.toString(CryptoES.enc.Base64);
+export const md5 = (value: string): WordArray => MD5(value);
+export const sha3 = (value: string): WordArray => SHA3(value);
+export const base64 = (value: WordArray): string => value.toString(Base64);
 
 export const escapeBase64 = (value: string): string =>
     value

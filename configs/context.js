@@ -1,5 +1,5 @@
 const {resolve: pathResolve} = require('path');
-const {readdirSync} = require('fs');
+const {readdirSync, readFileSync} = require('fs');
 
 const getDirectories = source => readdirSync(source, {withFileTypes: true})
     .filter(dirent => dirent.isDirectory())
@@ -14,6 +14,9 @@ const PATHS = {
     PAGES: pathResolve(SRC, 'pages'),
 };
 
+const PACKAGE_JSON_PATH = pathResolve(PATHS.PROJECT_ROOT, 'package.json');
+const PACKAGE_JSON = JSON.parse(readFileSync(PACKAGE_JSON_PATH, 'utf-8'));
+
 const commons = {
     rootContainerId: 'root',
     routes: Object.fromEntries(
@@ -22,6 +25,7 @@ const commons = {
         }]),
     ),
     paths: PATHS,
+    repoLink: PACKAGE_JSON['repository'],
 };
 
 module.exports = {

@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Style9Plugin = require('style9/webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StatoscopeWebpackPlugin = require('@statoscope/webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const browsersList = require('./browserslist');
 const contextFactory = require('./context');
@@ -93,10 +95,9 @@ module.exports = {
             new StatoscopeWebpackPlugin({
                 saveTo: pathResolve(context.paths.PROJECT_ROOT, 'reports', 'stats-[hash]-statoscope.html'),
                 saveStatsTo: pathResolve(context.paths.PROJECT_ROOT, 'reports', 'stats-[hash]-statoscope.json'),
-                statsOptions: {
-                    all: true,
-                    source: false,
-                },
+                // statsOptions: {
+                //     all: true,
+                // },
             })
         ),
     ].filter(Boolean),
@@ -110,6 +111,11 @@ module.exports = {
                     enforce: true,
                 }
             }
-        }
+        },
+        minimize: ENVIRONMENT === 'production',
+        minimizer: [
+            new TerserPlugin(),
+            new CssMinimizerPlugin(),
+        ]
     },
 };

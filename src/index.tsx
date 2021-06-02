@@ -1,14 +1,19 @@
 import {render} from 'react-dom';
 
+import {rawContext} from './context';
+import {Root} from './features/Root';
 import {IndexPage} from './pages/IndexPage';
 
-const context = process.env.CONTEXT as unknown as {
-    rootContainerId: string,
-    routes: Record<string, {
-        pageLocalPath: string,
-    }>,
-};
 
-const rootElement = document.getElementById(context.rootContainerId);
+const rootElement = document.getElementById(rawContext.rootContainerId);
 
-render(<IndexPage />, rootElement);
+function GenericReactPage() {
+    return (
+        <Root Content={IndexPage} />
+    );
+}
+
+render(
+    <GenericReactPage />,
+    rootElement
+);
