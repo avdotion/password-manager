@@ -1,5 +1,5 @@
 import {useAtom} from '@reatom/react';
-import {ComponentProps} from 'react';
+import {ComponentProps, JSX} from 'preact';
 import style9 from 'style9';
 
 import {Frame} from '../../ui/layout/Frame';
@@ -26,6 +26,7 @@ export function GeneratedPassword(props: Partial<ComponentProps<typeof Spoiler>>
             summaryOff="🙊 Hide generated password"
             styles={[generatedPasswordStyles.spoiler]}
             open={showSaltedPasswordValue}
+            tabIndex={2}
             onToggle={toggle}
             {...props}
         >

@@ -26,6 +26,7 @@ const commons = {
     ),
     paths: PATHS,
     repoLink: PACKAGE_JSON['repository'],
+    appVersion: PACKAGE_JSON['version'],
 };
 
 module.exports = {

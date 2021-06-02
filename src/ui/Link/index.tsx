@@ -1,3 +1,4 @@
+import {JSX} from 'preact';
 import style9, {Style} from 'style9';
 import {TextColorsStyle} from '../../features/Theming';
 import {ExtendComponentProps} from '../../utils/component';

@@ -1,7 +1,10 @@
-import {HTMLAttributes, ReactNode, SVGProps} from 'react';
+import {ComponentChildren, JSX} from 'preact';
 import style9, {Style} from 'style9';
 
 import {ExtendComponentProps, overrideComponent} from '../../utils/component';
+
+type SVGAttributes = JSX.SVGAttributes;
+type HTMLAttributes = JSX.HTMLAttributes;
 
 export type Size = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
@@ -39,13 +42,11 @@ const frameStyles = style9.create({
 
 type ValueOf<T> = T[keyof T];
 type Filter<Collection, Value> = ValueOf<{[K in keyof Collection]: Collection[K] extends Value ? never : K}>;
-type ElementTag = Filter<JSX.IntrinsicElements, SVGProps<
-    SVGRectElement | SVGSymbolElement | SVGClipPathElement | SVGFilterElement | SVGElement
->>;
+type ElementTag = Filter<JSX.IntrinsicElements, SVGAttributes<unknown>>;
 
 type FrameProps = ExtendComponentProps<HTMLAttributes<HTMLElement>, {
     as?: ElementTag,
-    children?: ReactNode,
+    children?: ComponentChildren,
     styles?: Style[],
     def?: string,
 

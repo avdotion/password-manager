@@ -1,4 +1,4 @@
-import {ComponentProps, FunctionComponent} from 'react';
+import {ComponentProps, FunctionComponent, JSX} from 'preact';
 
 import {keysOf} from './syntax';
 

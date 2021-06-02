@@ -1,3 +1,4 @@
+import {JSX} from 'preact';
 import {useAtom} from '@reatom/react';
 import {Text} from '../../ui/Text';
 import {terminationTimeLeft} from './context';

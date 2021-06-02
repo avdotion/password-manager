@@ -1,3 +1,4 @@
+import {JSX} from 'preact';
 import {useAtom} from '@reatom/react';
 import {HASH_FUNCTIONS} from '../../salting';
 import {Label} from '../../ui/Label';
@@ -12,8 +13,8 @@ export function SelectHashFunction(): JSX.Element {
         <Label label="Hash function:">
             <Select
                 value={hashFunctionNameValue}
+                tabIndex={3}
                 onChange={onSelect}
-                title="Select hash function"
             >
                 {keysOf(HASH_FUNCTIONS).map(hashFunctionName => (
                     <Option key={hashFunctionName} value={hashFunctionName}>{hashFunctionName}</Option>

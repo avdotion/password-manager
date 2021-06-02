@@ -1,4 +1,4 @@
-import {ComponentProps} from 'react';
+import {ComponentProps, JSX} from 'preact';
 import style9 from 'style9';
 
 import {Button} from '../Button';
@@ -50,6 +50,7 @@ export function Spoiler({
     children,
     styles = [],
     open,
+    tabIndex,
     onToggle,
     ...props
 }: Props): JSX.Element {
@@ -62,6 +63,7 @@ export function Spoiler({
                 variant="pseudo"
                 styles={[spoilerStyles.summary, open && spoilerStyles.summaryOpen]}
                 size="m"
+                tabIndex={tabIndex}
                 onClick={onToggle}
             >{(open && summaryOff) || summary}</Button>
             {open && children}

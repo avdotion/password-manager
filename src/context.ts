@@ -8,6 +8,7 @@ export type Context = Readonly<{
     paths: Record<string, string>,
     repoLink: string,
     title: string,
+    appVersion: string,
 }>;
 
 export const rawContext = process.env.CONTEXT as unknown as Context;

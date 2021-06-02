@@ -1,4 +1,5 @@
-import {useRef, useState} from 'react';
+import {JSX} from 'preact';
+import {useRef, useState} from 'preact/hooks';
 import style9, {Style} from 'style9';
 import {ExtendComponentProps} from '../../utils/component';
 

@@ -1,4 +1,5 @@
 import {useAtom} from '@reatom/react';
+import {JSX} from 'preact';
 import style9 from 'style9';
 
 import {emojiPrompt} from './context';

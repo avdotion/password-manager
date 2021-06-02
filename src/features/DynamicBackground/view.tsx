@@ -1,4 +1,5 @@
-import {memo} from 'react';
+import {memo} from 'preact/compat';
+import {JSX} from 'preact';
 import style9 from 'style9';
 
 import {COLORFUL_EMOJIS_ORDERED_LIST} from '../../constants';

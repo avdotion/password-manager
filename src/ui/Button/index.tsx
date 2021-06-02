@@ -1,3 +1,4 @@
+import {JSX} from 'preact';
 import style9, {Style} from 'style9';
 import {ExtendComponentProps} from '../../utils/component';
 
@@ -9,9 +10,6 @@ const buttonStyles = style9.create({
         cursor: 'pointer',
         width: 'auto',
         alignItems: 'center',
-        ':focus': {
-            outline: 'none',
-        },
         userSelect: 'none',
         color: '#000',
     },

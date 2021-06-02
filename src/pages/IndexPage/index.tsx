@@ -1,4 +1,5 @@
 import {useAtom} from '@reatom/react';
+import {JSX} from 'preact';
 import style9 from 'style9';
 import {context} from '../../context';
 
@@ -24,6 +25,10 @@ const indexPageStyles = style9.create({
         borderBottomLeftRadius: 4,
         padding: '30px 20px',
         backdropFilter: 'blur(10px)',
+        '@media (max-width: 400px)': {
+            minHeight: '100vh',
+            maxWidth: '100%',
+        },
     },
 });
 
@@ -40,7 +45,11 @@ export function IndexPage(): JSX.Element {
                 <Text size="xl" weight="semiBold">{title}</Text>
                 <Text>...is secure and convenient!</Text>
                 <VerticalSpacing size={1} />
-                <Link href={repoLink}>Source code: How it works and what to do if an app become unavailable?</Link>
+                <Link
+                    href={repoLink}
+                    target="_blank"
+                    tabIndex={4}
+                >Source code: How it works and what to do if an app become unavailable?</Link>
                 <VerticalSpacing size={10} />
                 <PasswordSalting />
                 <VerticalSpacing size={6} />

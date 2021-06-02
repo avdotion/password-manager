@@ -1,5 +1,6 @@
-import {default as browserCopy} from 'copy-to-clipboard';
+import * as browserCopy from 'copy-to-clipboard';
 import {useAtom} from '@reatom/react';
+import {JSX} from 'preact';
 
 import {Button} from '../../ui/Button';
 import {saltedPassword} from '../GeneratedPassword';

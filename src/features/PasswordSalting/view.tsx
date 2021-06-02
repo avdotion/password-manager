@@ -1,4 +1,5 @@
 import {useAtom} from '@reatom/react';
+import {JSX} from 'preact';
 
 import {Frame} from '../../ui/layout/Frame';
 import {TextField} from '../../ui/TextField';

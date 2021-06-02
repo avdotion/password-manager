@@ -1,4 +1,5 @@
-import {forwardRef, FocusEvent} from 'react';
+import {forwardRef} from 'preact/compat';
+import {FocusEventHandler} from 'preact/src/jsx';
 import style9 from 'style9';
 import {extractOrigin} from '../../utils/url';
 
@@ -13,7 +14,7 @@ export const UrlInput = forwardRef<HTMLInputElement, CommonInputProps>(({
     onValueChange,
     ...props
 }: CommonInputProps, htmlInputRef) => {
-    const onBlur = (event: FocusEvent<HTMLInputElement>) => {
+    const onBlur = (event: FocusEventHandler<HTMLInputElement>) => {
         onValueChange(extractOrigin(value));
         onBlurCallback && onBlurCallback(event);
     };

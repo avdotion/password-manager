@@ -1,3 +1,4 @@
+import {JSX} from 'preact';
 import style9 from 'style9';
 import {ExtendComponentProps} from '../../utils/component';
 import {Frame} from '../layout/Frame';

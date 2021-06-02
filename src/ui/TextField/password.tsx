@@ -1,4 +1,5 @@
-import {useState, forwardRef} from 'react';
+import {forwardRef} from 'preact/compat';
+import {useState} from 'preact/hooks';
 import style9 from 'style9';
 
 import {generateString} from '../../utils/random';

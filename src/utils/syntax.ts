@@ -10,3 +10,11 @@ export const times = <T>(n: number, fn: (index: number) => T): T[] =>
     Array.from({length: n}, (_, index) => fn(index));
 
 export const trim = (length: number, value: string): string => value.substring(0, length);
+export const range = (from: number, to: number, step = 1): number[] => {
+    const result = [];
+    for (let i = from; i < to; i += step) {
+        result.push(i);
+    }
+
+    return result;
+};

@@ -1,3 +1,4 @@
+import {JSX} from 'preact';
 import style9 from 'style9';
 import {ExtendComponentProps} from '../../utils/component';
 import {familyStyles, sizeStyles} from '../Text';
@@ -6,7 +7,6 @@ const selectStyles = style9.create({
     reset: {
         appearance: 'none',
         backgroundColor: 'transparent',
-        outline: 'none',
     },
     appearance: {
         position: 'relative',

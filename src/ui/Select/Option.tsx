@@ -1,3 +1,4 @@
+import {JSX} from 'preact';
 import {ExtendComponentProps} from '../../utils/component';
 
 type OptionProps = ExtendComponentProps<JSX.IntrinsicElements['option'], {

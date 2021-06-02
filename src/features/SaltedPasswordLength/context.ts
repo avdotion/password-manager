@@ -1,8 +1,9 @@
 import {declareAtom as atom} from '@reatom/core';
 import {SALTED_PASSWORD_DEFAULT_LENGTH, SALTED_PASSWORD_MAX_LENGTH, SALTED_PASSWORD_MIN_LENGTH} from '../../constants';
+import {restoreLocally} from '../StoreLocally';
 
 export const saltedPasswordLength = atom(
-    SALTED_PASSWORD_DEFAULT_LENGTH,
+    restoreLocally<number>('saltedPasswordLength') ?? SALTED_PASSWORD_DEFAULT_LENGTH,
     {
         change: (value: number) => {
             if (value > SALTED_PASSWORD_MAX_LENGTH) {

@@ -34,6 +34,10 @@ module.exports = {
     }),
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json'],
+        alias: {
+            react: 'preact/compat',
+            'react-dom': 'preact/compat',
+        },
     },
     module: {
         rules: [
@@ -48,11 +52,16 @@ module.exports = {
                                 ['@babel/preset-env', {
                                     targets: browsersList,
                                 }],
-                                ['@babel/preset-typescript'],
-                                ['@babel/preset-react', {
-                                    'runtime': 'automatic'
+                                ['@babel/preset-typescript', {
+                                    jsxPragma: 'h',
                                 }],
-                            ]
+                            ],
+                            plugins: [
+                                ['@babel/plugin-transform-react-jsx', {
+                                    runtime: 'automatic',
+                                    importSource: 'preact',
+                                }],
+                            ],
                         }
                     },
                     Style9Plugin.loader,
@@ -95,9 +104,6 @@ module.exports = {
             new StatoscopeWebpackPlugin({
                 saveTo: pathResolve(context.paths.PROJECT_ROOT, 'reports', 'stats-[hash]-statoscope.html'),
                 saveStatsTo: pathResolve(context.paths.PROJECT_ROOT, 'reports', 'stats-[hash]-statoscope.json'),
-                // statsOptions: {
-                //     all: true,
-                // },
             })
         ),
     ].filter(Boolean),

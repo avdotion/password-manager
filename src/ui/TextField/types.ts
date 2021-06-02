@@ -1,3 +1,4 @@
+import {JSX} from 'preact';
 import {Style} from 'style9';
 import {ExtendComponentProps} from '../../utils/component';
 

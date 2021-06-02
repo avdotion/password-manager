@@ -1,4 +1,4 @@
-function parseUrl(url: string): URL | void {
+function parseUrl(url: string): URL | undefined {
     let urlToParse = url;
     if (!url.startsWith('https://')) urlToParse =  `https://${url}`;
 
@@ -9,9 +9,11 @@ function parseUrl(url: string): URL | void {
 }
 
 export function extractHost(url: string): string {
-    return parseUrl(url)?.host ?? url;
+    const parsedUrl = parseUrl(url);
+    return parsedUrl != null ? parsedUrl?.host : url;
 }
 
 export function extractOrigin(url: string): string {
-    return parseUrl(url)?.origin ?? url;
+    const parsedUrl = parseUrl(url);
+    return parsedUrl != null ? parsedUrl?.origin : url;
 }

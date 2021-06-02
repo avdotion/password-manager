@@ -1,11 +1,8 @@
-import {render} from 'react-dom';
+import {render} from 'preact';
 
 import {rawContext} from './context';
 import {Root} from './features/Root';
 import {IndexPage} from './pages/IndexPage';
-
-
-const rootElement = document.getElementById(rawContext.rootContainerId);
 
 function GenericReactPage() {
     return (
@@ -13,6 +10,7 @@ function GenericReactPage() {
     );
 }
 
+const rootElement = document.getElementById(rawContext.rootContainerId);
 render(
     <GenericReactPage />,
     rootElement

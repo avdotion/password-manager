@@ -1,7 +1,9 @@
-import {HTMLAttributes, ReactNode} from 'react';
+import {ComponentChildren, JSX} from 'preact';
 import style9, {Style} from 'style9';
 import {textColors, TextColorsStyle} from '../../features/Theming';
 import {ExtendComponentProps} from '../../utils/component';
+
+type HTMLAttributes = JSX.HTMLAttributes;
 
 type FamilyStyle = 'default' | 'monospace';
 export const {...familyStyles} = style9.create<Record<FamilyStyle, Style>>({
@@ -66,7 +68,7 @@ const alignStyles = style9.create<Record<AlignStyle, Style>>({
 
 type TextProps = ExtendComponentProps<HTMLAttributes<HTMLElement>, {
     as?: 'a' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p',
-    children: ReactNode,
+    children: ComponentChildren,
     styles?: Style[],
     def?: string,
 

@@ -1,4 +1,4 @@
-import {forwardRef} from 'react';
+import {forwardRef} from 'preact/compat';
 import style9 from 'style9';
 
 import {CommonInputProps} from './types';

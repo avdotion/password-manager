@@ -1,13 +1,13 @@
-import {ReactNode} from 'react';
+import {ComponentChildren, JSX} from 'preact';
 import {Frame} from '../../ui/layout/Frame';
 import {palette, ThemeName, THEMES, themeStyles} from './palette';
 
-type Props = {
+type ThemeProviderProps = {
     theme: ThemeName,
-    children: ReactNode,
+    children: ComponentChildren,
 };
 
-export function ThemeProvider({children}: Props): JSX.Element {
+export function ThemeProvider({children}: ThemeProviderProps): JSX.Element {
     return (
         <Frame styles={[
             palette.basicColors,
