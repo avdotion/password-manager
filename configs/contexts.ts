@@ -27,6 +27,9 @@ invariant(typeof version === 'string', 'App version must be specified in package
 const repoLink: string = packageJson['repository'];
 invariant(typeof version === 'string', 'Repository url must be specified in package.json!');
 
+const selfLink: string = packageJson['homepage'];
+invariant(typeof version === 'string', 'Homepage url must be specified in package.json!');
+
 type Route<N> = {
     name: N,
     controller: string,
@@ -40,6 +43,7 @@ export type RuntimeContext = {
     rootContainerId: string,
     readonly version: string,
     readonly repoLink: string,
+    readonly selfLink: string,
     routes: Readonly<{[N in string]: Route<N>}>,
 };
 export type Context = {
@@ -73,6 +77,7 @@ export const contexts: Record<string, Context> = {
             rootContainerId: 'root',
             version,
             repoLink,
+            selfLink,
             routes,
         },
     },
@@ -89,6 +94,7 @@ export const contexts: Record<string, Context> = {
             rootContainerId: 'root',
             version,
             repoLink,
+            selfLink,
             routes,
         },
     },

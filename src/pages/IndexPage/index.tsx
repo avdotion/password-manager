@@ -34,7 +34,7 @@ const indexPageStyles = style9.create({
 
 const BaseLayout = overrideFrame({styles: [indexPageStyles.baseLayout], as: 'main', def: 'base-layout'});
 
-export default function IndexPage(pageParams: Record<string, unknown>): JSX.Element {
+export default function IndexPage(): JSX.Element {
     const {repoLink, title} = CONTEXT;
 
     return (

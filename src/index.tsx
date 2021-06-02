@@ -7,16 +7,16 @@ import {Root} from './features/Root';
 import {valuesOf} from './utils/syntax';
 
 const resolveCurrentPage = async (url: string): Promise<[() => JSX.Element, Record<string, unknown>]> => {
-    console.log(url);
     const parsedUrl = new URL(url);
     const pathname = parsedUrl.pathname;
     const queryParams = Object.fromEntries(parsedUrl.searchParams);
 
+    const basePrefix = (new URL(CONTEXT.selfLink)).pathname;
+
     for (const route of valuesOf(CONTEXT.routes)) {
         const {controller, overrideParams, path} = route;
-
-        const matcher = match(path);
-        const result = matcher(pathname );
+        const matcher = match(basePrefix + path);
+        const result = matcher(pathname);
 
         if (!result) {
             continue;
