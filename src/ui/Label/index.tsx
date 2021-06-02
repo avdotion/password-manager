@@ -9,7 +9,7 @@ const labelStyle = style9.create({
         width: 'auto',
     },
     label: {
-        color: 'rgba(0, 0, 0, .5)',
+        color: 'var(--label-color)',
     },
     content: {
         display: 'block',

@@ -13,13 +13,13 @@ import {UrlInput} from './url';
 
 const textFieldStyles = style9.create({
     wrapper: {
-        backgroundColor: 'rgb(255, 255, 255)',
+        backgroundColor: 'var(--text-field-bg)',
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
         cursor: 'text',
         position: 'relative',
-        boxShadow: '0px 1px 6px rgba(0, 0, 0, 0.05)',
+        boxShadow: '0px 1px 6px var(--text-field-shadow)',
         borderTopLeftRadius: '4px',
         borderTopRightRadius: '4px',
         borderBottomRightRadius: '4px',
@@ -27,7 +27,7 @@ const textFieldStyles = style9.create({
         transition: 'box-shadow .2s',
     },
     wrapperFocused: {
-        boxShadow: '0px 1px 12px rgba(0, 0, 0, 0.15)',
+        boxShadow: '0px 1px 12px var(--text-field-shadow-focus)',
     },
     htmlInput: {
         border: 'none',
@@ -37,13 +37,13 @@ const textFieldStyles = style9.create({
         padding: 0,
 
         backgroundColor: 'transparent',
-        color: 'rgba(0, 0, 0, .8)',
-        caretColor: 'rgba(0, 0, 0, .8)',
+        color: 'var(--text-field-color)',
+        caretColor: 'var(--text-field-color)',
 
         fontSize: 14,
 
         '::placeholder': {
-            color: 'rgba(0, 0, 0, .4)',
+            color: 'var(--text-field-placeholder-color)',
             fontWeight: 500,
         },
     },
@@ -116,7 +116,6 @@ export function TextField({
             onClick={onWrapperClick}
         >
             <InputComponent
-                // @ts-expect-error TODO: the ref is not a ref
                 ref={htmlInputRef}
                 htmlInputStyles={[
                     textFieldStyles.htmlInput,

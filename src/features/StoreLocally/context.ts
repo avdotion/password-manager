@@ -6,7 +6,6 @@ import {storeLocally} from './storeLocally';
 
 export const storeLocallyObserver = atom($ => {
     $(hashFunctionName, value => {
-        console.log('test', value);
         storeLocally('hashFunctionName', value);
     });
     $(saltedPasswordLength, value => storeLocally('saltedPasswordLength', value));

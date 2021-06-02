@@ -1,7 +1,6 @@
-import {useAtom} from '@reatom/react';
 import {JSX} from 'preact';
 import style9 from 'style9';
-import {context} from '../../context';
+import {CONTEXT} from '../../context';
 
 import {CopySaltedPasswordButton} from '../../features/CopySaltedPassword';
 import {DynamicBackground} from '../../features/DynamicBackground';
@@ -18,6 +17,7 @@ import {Text} from '../../ui/Text';
 
 const indexPageStyles = style9.create({
     baseLayout: {
+        backgroundColor: 'var(--base-layout-bg)',
         maxWidth: 340,
         borderTopLeftRadius: 4,
         borderTopRightRadius: 4,
@@ -34,9 +34,8 @@ const indexPageStyles = style9.create({
 
 const BaseLayout = overrideFrame({styles: [indexPageStyles.baseLayout], as: 'main', def: 'base-layout'});
 
-
-export function IndexPage(): JSX.Element {
-    const [{repoLink, title}] = useAtom(context);
+export default function IndexPage(pageParams: Record<string, unknown>): JSX.Element {
+    const {repoLink, title} = CONTEXT;
 
     return (
         <>

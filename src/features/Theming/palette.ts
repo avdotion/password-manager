@@ -13,28 +13,35 @@ declare module 'style9' {
 declare module 'style9' {
     interface CustomProperties {
         '--green'?: string;
-        '--red'?: string;
-        '--accent'?: string;
-        '--accent-bg'?: string;
-        '--root-bg'?: string;
-        '--content-bg'?: string;
-        '--inactive-element-bg'?: string;
-        '--inactive-element-text'?: string;
-        '--content-text'?: string;
+        '--base-layout-bg'?: string,
+        '--button-action-bg'?: string,
+        '--button-action-color'?: string,
+        '--button-action-disabled-color'?: string,
+        '--button-action-disabled-dash'?: string,
+        '--button-action-shadow'?: string,
+        '--button-action-shadow-active'?: string,
+        '--button-action-shadow-active-inset'?: string,
+        '--button-action-shadow-hover'?: string,
+        '--button-pseudo-color'?: string,
+        '--button-select-bg'?: string,
+        '--label-color'?: string,
+        '--link-mark-bg'?: string,
+        '--link-mark-color'?: string,
+        '--root-bg'?: string,
+        '--select-bg'?: string,
+        '--select-border'?: string,
+        '--select-color'?: string,
+        '--select-shadow'?: string,
+        '--spoiler-open-bg'?: string,
+        '--text-color'?: string,
+        '--text-field-bg'?: string,
+        '--text-field-color'?: string,
+        '--text-field-placeholder-color'?: string,
+        '--text-field-shadow'?: string,
+        '--text-field-shadow-focus'?: string,
+
     }
 }
-
-export const {...palette} = style9.create({
-    basicColors: {
-        '--green': '2, 184, 110',
-        '--red': '225, 73, 65',
-    },
-    themeIndependent: {
-        '--accent': 'rgb(var(--green))',
-        '--accent-bg': 'rgba(var(--green), 0.1)',
-        '--root-bg': 'rgb(214, 218, 224)',
-    },
-});
 
 export const THEMES = {
     light: 'light',
@@ -44,34 +51,87 @@ export const THEMES = {
 export type ThemeName = keyof typeof THEMES;
 export const {...themeStyles} = style9.create<Record<ThemeName, Style>>({
     light: {
-        '--content-bg': 'rgb(255, 255, 255)',
-        '--inactive-element-bg': 'rgb(246, 248, 249)',
-        '--inactive-element-text': 'rgb(108, 114, 122)',
-        '--content-text': 'rgb(64, 64, 68)',
+        '--base-layout-bg': 'rgba(255, 255, 255, 0.3)',
+        '--button-action-bg': 'rgba(0, 0, 0, 1)',
+        '--button-action-color': 'rgba(255, 255, 255, .8)',
+        '--button-action-disabled-color': 'rgba(0, 0, 0, 0.5)',
+        '--button-action-disabled-dash': 'rgba(0, 0, 0, 0.5)',
+        '--button-action-shadow': 'rgba(0, 0, 0, 0.4)',
+        '--button-action-shadow-active': 'rgba(0, 0, 0, 0.4)',
+        '--button-action-shadow-active-inset': 'rgba(255, 255, 255, 0.6)',
+        '--button-action-shadow-hover': 'rgba(0, 0, 0, 0.4)',
+        '--button-pseudo-color': 'rgba(0, 0, 0, 0.8)',
+        '--button-select-bg': 'rgba(255, 255, 255, 1)',
+        '--label-color': 'rgba(0, 0, 0, .5)',
+        '--link-mark-bg': 'rgba(255, 255, 255, 0.8)',
+        '--link-mark-color': 'rgba(0, 0, 0, 0.8)',
+        '--root-bg': 'rgb(244, 244, 244)',
+        '--select-bg': 'rgba(255, 255, 255, 1)',
+        '--select-border': 'rgba(0, 0, 0, 0.05)',
+        '--select-color': 'rgba(0, 0, 0, 0.8)',
+        '--select-shadow': 'rgba(0, 0, 0, 0.05)',
+        '--spoiler-open-bg': 'rgba(0, 0, 0, .05)',
+        '--text-color': 'rgba(0, 0, 0, 0.9)',
+        '--text-field-bg': 'rgba(255, 255, 255, 1)',
+        '--text-field-color': 'rgba(0, 0, 0, .8)',
+        '--text-field-placeholder-color': 'rgba(0, 0, 0, .4)',
+        '--text-field-shadow': 'rgba(0, 0, 0, 0.05)',
+        '--text-field-shadow-focus': 'rgba(0, 0, 0, 0.15)',
     },
     dark: {
-        '--content-bg': 'rgb(47, 49, 55)',
-        '--inactive-element-bg': 'rgb(56, 59, 66)',
-        '--inactive-element-text': 'rgb(134, 140, 147)',
-        '--content-text': 'rgb(243, 244, 244)',
+        '--base-layout-bg': 'rgba(255, 255, 255, 0.05)',
+        '--button-action-bg': 'rgba(0, 0, 0, 0.6)',
+        '--button-action-color': 'rgba(255, 255, 255, .6)',
+        '--button-action-disabled-color': 'rgba(255, 255, 255, 0.2)',
+        '--button-action-disabled-dash': 'rgba(255, 255, 255, 0.2)',
+        '--button-action-shadow': 'rgba(0, 0, 0, 0.4)',
+        '--button-action-shadow-active': 'rgba(0, 0, 0, 0.4)',
+        '--button-action-shadow-active-inset': 'rgba(255, 255, 255, 0.1)',
+        '--button-action-shadow-hover': 'rgba(0, 0, 0, 0.4)',
+        '--button-pseudo-color': 'rgba(255, 255, 255, 0.5)',
+        '--button-select-bg': 'rgba(0, 0, 0, 0.2)',
+        '--label-color': 'rgba(255, 255, 255, .5)',
+        '--link-mark-bg': 'rgba(255, 255, 255, 0.1)',
+        '--link-mark-color': 'rgba(255, 255, 255, 0.6)',
+        '--root-bg': 'rgb(40, 40, 40)',
+        '--select-bg': 'rgba(0, 0, 0, 0.2)',
+        '--select-border': 'rgba(0, 0, 0, 0.05)',
+        '--select-color': 'rgba(255, 255, 255, 0.7)',
+        '--select-shadow': 'rgba(0, 0, 0, 0.05)',
+        '--spoiler-open-bg': 'rgba(0, 0, 0, .05)',
+        '--text-color': 'rgba(255, 255, 255, 0.8)',
+        '--text-field-bg': 'rgba(255, 255, 255, 0.3)',
+        '--text-field-color': 'rgba(0, 0, 0, .8)',
+        '--text-field-placeholder-color': 'rgba(0, 0, 0, .4)',
+        '--text-field-shadow': 'rgba(0, 0, 0, 0.05)',
+        '--text-field-shadow-focus': 'rgba(0, 0, 0, 0.15)',
     },
     black: {
-        '--content-bg': 'rgb(28, 29, 34)',
-        '--inactive-element-bg': 'rgb(37, 38, 45)',
-        '--inactive-element-text': 'rgb(140, 146, 153)',
-        '--content-text': 'rgb(245, 245, 247)',
-    },
-});
-
-export type TextColorsStyle = 'accent' | 'inactiveElement' | 'content';
-export const {...textColors} = style9.create<Record<TextColorsStyle, Style>>({
-    accent: {
-        color: 'var(--accent)',
-    },
-    inactiveElement: {
-        color: 'var(--inactive-element-text)',
-    },
-    content: {
-        color: 'var(--content-text)',
+        '--base-layout-bg': 'rgba(255, 255, 255, 0.05)',
+        '--button-action-bg': 'rgba(0, 0, 0, 1)',
+        '--button-action-color': 'rgba(255, 255, 255, .8)',
+        '--button-action-disabled-color': 'rgba(255, 255, 255, 0.2)',
+        '--button-action-disabled-dash': 'rgba(255, 255, 255, 0.2)',
+        '--button-action-shadow': 'rgba(0, 0, 0, 0.4)',
+        '--button-action-shadow-active': 'rgba(0, 0, 0, 0.4)',
+        '--button-action-shadow-active-inset': 'rgba(255, 255, 255, 0.2)',
+        '--button-action-shadow-hover': 'rgba(0, 0, 0, 0.4)',
+        '--button-pseudo-color': 'rgba(255, 255, 255, 0.5)',
+        '--button-select-bg': 'rgba(255, 255, 255, 0.1)',
+        '--label-color': 'rgba(255, 255, 255, .4)',
+        '--link-mark-bg': 'rgba(255, 255, 255, 0.1)',
+        '--link-mark-color': 'rgba(255, 255, 255, 0.5)',
+        '--root-bg': 'rgb(10, 10, 10)',
+        '--select-bg': 'rgba(0, 0, 0, 0.6)',
+        '--select-border': 'rgba(0, 0, 0, 0.05)',
+        '--select-color': 'rgba(255, 255, 255, 0.8)',
+        '--select-shadow': 'rgba(0, 0, 0, 0.05)',
+        '--spoiler-open-bg': 'rgba(0, 0, 0, .3)',
+        '--text-color': 'rgba(255, 255, 255, 0.8)',
+        '--text-field-bg': 'rgba(0, 0, 0, 0.5)',
+        '--text-field-color': 'rgba(255, 255, 255, .5)',
+        '--text-field-placeholder-color': 'rgba(255, 255, 255, .3)',
+        '--text-field-shadow': 'rgba(0, 0, 0, 0.05)',
+        '--text-field-shadow-focus': 'rgba(0, 0, 0, 0.15)',
     },
 });

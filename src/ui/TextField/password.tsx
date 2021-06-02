@@ -18,7 +18,7 @@ const passwordFieldStyles = style9.create({
         color: 'transparent',
         fontWeight: 500,
         '::placeholder': {
-            color: 'rgba(0, 0, 0, .4)',
+            color: 'var(--text-field-placeholder-color)',
             fontFamily: 'Inter',
         },
     },
@@ -28,7 +28,9 @@ const passwordFieldStyles = style9.create({
         userSelect: 'none',
         overflowY: 'hidden',
         justifyContent: 'center',
-        color: 'rgba(0, 0, 0, .8)',
+        color: 'var(--text-field-color)',
+        lineHeight: '28px',
+        fontFamily: 'Inconsolata',
     },
 });
 
@@ -58,14 +60,12 @@ export const PasswordInput = forwardRef<HTMLInputElement, CommonInputProps>(({
                     value={value}
                     {...props}
                 />
-                <Frame styles={[
+                <Text family="monospace" styles={[
                     ...htmlInputStyles,
                     passwordFieldStyles.mask,
                 ]} def="input-mask">
-                    <Text family="monospace">
-                        {hidden ? mask.slice(0, value.length) : value}
-                    </Text>
-                </Frame>
+                    {hidden ? mask.slice(0, value.length) : value}
+                </Text>
             </Frame>
             {value.length > 0 && (
                 <Button variant="select" onClick={onShowButtonClick} size="s">

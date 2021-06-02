@@ -1,9 +1,14 @@
 import {ComponentChildren, JSX} from 'preact';
 import style9, {Style} from 'style9';
-import {textColors, TextColorsStyle} from '../../features/Theming';
 import {ExtendComponentProps} from '../../utils/component';
 
 type HTMLAttributes = JSX.HTMLAttributes;
+
+const textStyles = style9.create({
+    default: {
+        color: 'var(--text-color)',
+    },
+});
 
 type FamilyStyle = 'default' | 'monospace';
 export const {...familyStyles} = style9.create<Record<FamilyStyle, Style>>({
@@ -76,7 +81,6 @@ type TextProps = ExtendComponentProps<HTMLAttributes<HTMLElement>, {
     size?: SizeStyle,
     weight?: WeightStyle,
     align?: AlignStyle,
-    color?: TextColorsStyle,
 }>;
 
 export function Text({
@@ -89,18 +93,17 @@ export function Text({
     size = 'm',
     weight = 'regular',
     align = 'left',
-    color,
     ...props
 }: TextProps): JSX.Element {
     return (
         <Tag
             data-def={def}
             className={style9(
+                textStyles.default,
                 familyStyles[family],
                 sizeStyles[size],
                 weightStyles[weight],
                 alignStyles[align],
-                textColors[color],
                 ...styles,
             )}
             {...props}

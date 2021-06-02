@@ -15,7 +15,8 @@ const linkStyle = style9.create({
     },
     mark: {
         display: 'inline',
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        color: 'var(--link-mark-color)',
+        backgroundColor: 'var(--link-mark-bg)',
     },
 });
 

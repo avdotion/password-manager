@@ -1,15 +1,4 @@
-import {declareAtom as atom} from '@reatom/core';
+import {RuntimeContext} from '../configs/contexts';
 
-export type Context = Readonly<{
-    rootContainerId: string,
-    routes: Record<string, {
-        pageLocalPath: string,
-    }>,
-    paths: Record<string, string>,
-    repoLink: string,
-    title: string,
-    appVersion: string,
-}>;
-
-export const rawContext = process.env.CONTEXT as unknown as Context;
-export const context = atom(rawContext);
+export type Context = RuntimeContext;
+export const CONTEXT = process.env.RUNTIME_CONTEXT as unknown as Context;

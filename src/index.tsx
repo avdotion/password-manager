@@ -1,17 +1,49 @@
-import {render} from 'preact';
+import {JSX, render} from 'preact';
+import {match} from 'path-to-regexp';
 
-import {rawContext} from './context';
+import {CONTEXT} from './context';
+
 import {Root} from './features/Root';
-import {IndexPage} from './pages/IndexPage';
+import {valuesOf} from './utils/syntax';
 
-function GenericReactPage() {
-    return (
-        <Root Content={IndexPage} />
-    );
+const resolveCurrentPage = async (url: string): Promise<[() => JSX.Element, Record<string, unknown>]> => {
+    console.log(url);
+    const parsedUrl = new URL(url);
+    const pathname = parsedUrl.pathname;
+    const queryParams = Object.fromEntries(parsedUrl.searchParams);
+
+    for (const route of valuesOf(CONTEXT.routes)) {
+        const {controller, overrideParams, path} = route;
+
+        const matcher = match(path);
+        const result = matcher(pathname );
+
+        if (!result) {
+            continue;
+        }
+
+        const params = {
+            ...queryParams,
+            ...result.params,
+            ...overrideParams,
+        };
+
+        return import(`./pages/${controller}/index`)
+            .then(module => [module.default, params]);
+    }
+
+    return Promise.resolve([() => <h1>Not Found!</h1>, {}]);
+};
+
+async function main() {
+    const currentUrl = document.location.href;
+    const [CurrentPage, params] = await resolveCurrentPage(currentUrl);
+
+    const rootElement = document.getElementById(CONTEXT.rootContainerId);
+    render(<Root Content={CurrentPage} params={params} />, rootElement);
 }
 
-const rootElement = document.getElementById(rawContext.rootContainerId);
-render(
-    <GenericReactPage />,
-    rootElement
-);
+main()
+    .catch(e => {
+        console.error(e);
+    });

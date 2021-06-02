@@ -1,43 +1,45 @@
-const {resolve: pathResolve} = require('path');
-const {DefinePlugin} = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Style9Plugin = require('style9/webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const StatoscopeWebpackPlugin = require('@statoscope/webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+import {DefinePlugin, Configuration} from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import {default as Style9Plugin} from 'style9/webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import StatoscopeWebpackPlugin from '@statoscope/webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 
-const browsersList = require('./browserslist');
-const contextFactory = require('./context');
+import {browsersList} from './browsersList';
+import {getContextByType} from './contexts';
 
-const ENVIRONMENT = process.env.ENVIRONMENT;
-const context = contextFactory[ENVIRONMENT];
+const context = getContextByType(process.env.CONTEXT_TYPE);
+const shouldBuildStatoscopeReport = process.env.STATOSCOPE_REPORT === 'true';
 
-const STATOSCOPE = process.env.STATOSCOPE === 'true';
-
-module.exports = {
+const webpackConfig: Configuration = {
     entry: {
-        app: pathResolve(context.paths.SRC, 'index.tsx'),
+        app: context.compilerOnly.paths.APP_ENTRY_POINT,
     },
     output: {
-        path: context.paths.DIST,
-        filename: '[name].bundle.js',
+        path: context.compilerOnly.paths.DIST,
+        filename: '[name].[contenthash].js',
     },
-    mode: ENVIRONMENT,
+
     target: 'web',
-    ...(ENVIRONMENT === 'development' && {
+
+    mode: context.compilerOnly.mode,
+    ...(context.compilerOnly.mode === 'development' ? {
         devtool: 'inline-source-map',
         devServer: {
-            contentBase: context.paths.DIST,
+            contentBase: context.compilerOnly.paths.DIST,
             hot: true,
         },
-    }),
+    } : {}),
+
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json'],
+        // TODO: Remove when @reatom/preact@2 become available
         alias: {
             react: 'preact/compat',
             'react-dom': 'preact/compat',
         },
     },
+
     module: {
         rules: [
             {
@@ -63,7 +65,7 @@ module.exports = {
                             ],
                         }
                     },
-                    Style9Plugin.loader,
+                    (Style9Plugin.loader as unknown),
                 ]
             },
             {
@@ -86,26 +88,28 @@ module.exports = {
             },
         ],
     },
+
     plugins: [
         new DefinePlugin({
-            'process.env.CONTEXT': JSON.stringify(context),
+            'process.env.RUNTIME_CONTEXT': JSON.stringify(context.runtime),
         }),
         new HtmlWebpackPlugin({
-            template: pathResolve(context.paths.SRC, 'index.html'),
+            template: context.compilerOnly.paths.HTML_TEMPLATE,
             templateParameters: {
-                title: context.title,
-                rootContainerId: context.rootContainerId,
+                title: context.runtime.title,
+                rootContainerId: context.runtime.rootContainerId,
             },
         }),
         new Style9Plugin(),
         new MiniCssExtractPlugin(),
-        STATOSCOPE && (
+        ...(shouldBuildStatoscopeReport ? [
             new StatoscopeWebpackPlugin({
-                saveTo: pathResolve(context.paths.PROJECT_ROOT, 'reports', 'stats-[hash]-statoscope.html'),
-                saveStatsTo: pathResolve(context.paths.PROJECT_ROOT, 'reports', 'stats-[hash]-statoscope.json'),
-            })
-        ),
-    ].filter(Boolean),
+                saveTo: context.compilerOnly.paths.REPORTS_STATOSCOPE_HTML,
+                saveStatsTo: context.compilerOnly.paths.REPORTS_STATOSCOPE_JSON,
+            }),
+        ] : []),
+    ],
+
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -117,9 +121,10 @@ module.exports = {
                 }
             }
         },
-        minimize: ENVIRONMENT === 'production',
+        minimize: context.compilerOnly.mode === 'production',
         minimizer: [
             new TerserPlugin(),
         ],
     },
 };
+export default webpackConfig;

@@ -1,5 +1,5 @@
-import {rawContext} from '../../context';
+import {CONTEXT} from '../../context';
 
 export function generateFieldKey(id: string): string {
-    return `${rawContext.appVersion}_${id}`;
+    return `${CONTEXT.version}_${id}`;
 }

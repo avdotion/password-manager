@@ -10,15 +10,16 @@ const selectStyles = style9.create({
     },
     appearance: {
         position: 'relative',
-        border: '1px solid rgba(0, 0, 0, 0.06)',
-        boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.05)',
+        border: '1px solid var(--select-border)',
+        boxShadow: '0px 1px 1px var(--select-shadow)',
         padding: '2px 16px',
         borderTopLeftRadius: 6,
         borderTopRightRadius: 6,
         borderBottomRightRadius: 6,
         borderBottomLeftRadius: 6,
         cursor: 'pointer',
-        backgroundColor: '#fff',
+        backgroundColor: 'var(--select-bg)',
+        color: 'var(--select-color)',
     },
 });
 

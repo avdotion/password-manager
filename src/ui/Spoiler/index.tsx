@@ -13,7 +13,7 @@ const spoilerStyles = style9.create({
         transition: 'background-color .3s',
     },
     detailsOpen: {
-        backgroundColor: 'rgba(0, 0, 0, .05)',
+        backgroundColor: 'var(--spoiler-open-bg)',
     },
     summary: {
         borderTopLeftRadius: 4,
