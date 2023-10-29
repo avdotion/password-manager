@@ -1,4 +1,14 @@
 {
-  "src/index.tsx": "bundle-DKPG4YUG.js",
-  "src/index.css": "bundle-L2XWTNF2.css"
-}
+    "short_name": "Weather",
+    "name": "Weather: Do I need an umbrella?",
+    "icons": [],
+    "id": "/?source=pwa",
+    "start_url": "/?source=pwa",
+    "background_color": "#3367D6",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#3367D6",
+    "shortcuts": [],
+    "description": "Weather forecast information",
+    "screenshots": []
+  }
