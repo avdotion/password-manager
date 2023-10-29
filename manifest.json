@@ -1,14 +1,14 @@
 {
-    "short_name": "Weather",
-    "name": "Weather: Do I need an umbrella?",
+    "short_name": "Password Manager",
+    "name": "Password Manager",
     "icons": [],
-    "id": "/?source=pwa",
-    "start_url": "/?source=pwa",
-    "background_color": "#3367D6",
+    "id": "/",
+    "start_url": "/",
+    "background_color": "#000000",
     "display": "standalone",
     "scope": "/",
-    "theme_color": "#3367D6",
+    "theme_color": "#000000",
     "shortcuts": [],
-    "description": "Weather forecast information",
+    "description": "Password Manager",
     "screenshots": []
   }
