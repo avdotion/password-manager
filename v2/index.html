@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru" data-theme="light">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' 'sha256-p3s4fpDQSpzrW97CPxEVOyeJ8TAaRNe4iajGNfOUMLc='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#007aff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0a84ff" media="(prefers-color-scheme: dark)" />
     <meta name="description" content="Stateless password generator — nothing stored, every password re-derived." />
@@ -23,8 +24,18 @@
         html[data-theme="dark"] { background: #161618; }
         html[data-theme="light"] { background: #d9dadf; }
     </style>
-  <script type="module" crossorigin src="/password-manager/v2/assets/index-y6fqylpp.js"></script>
-  <link rel="stylesheet" crossorigin href="/password-manager/v2/assets/index-DwELRZNf.css">
+    <script>
+        // System-only theme: set the initial appearance from the OS before the
+        // first paint so an installed PWA never flashes the wrong theme.
+        // theme.ts then keeps <html data-theme> in sync with the OS live.
+        try {
+            if (matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.dataset.theme = 'dark';
+            }
+        } catch (e) {}
+    </script>
+  <script type="module" crossorigin src="/password-manager/v2/assets/index-BoD2stQ4.js"></script>
+  <link rel="stylesheet" crossorigin href="/password-manager/v2/assets/index-BM5hmJUo.css">
 <link rel="manifest" href="/password-manager/v2/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/password-manager/v2/registerSW.js"></script></head>
 <body>
     <div id="root"></div>
